@@ -21,6 +21,25 @@ locals {
 }
 
 locals {
+  decryptionTmp = defaults(
+    var.decryption,
+    {
+      provider = "sops"
+      secret   = "flux-sops-gpg"
+    }
+  )
+}
+
+locals {
+  decryption = {
+    provider = local.decryptionTmp.provider
+    secretRef = {
+      name = local.decryptionTmp.secret
+    }
+  }
+}
+
+locals {
   manifest = {
     apiVersion = "kustomize.toolkit.fluxcd.io/v1beta1"
     kind       = "Kustomization"
@@ -30,10 +49,11 @@ locals {
       finalizers = ["finalizers.fluxcd.io"]
     }
     spec = {
-      prune     = local.prune
-      interval  = local.interval
-      path      = local.path
-      sourceRef = local.repository
+      prune      = local.prune
+      interval   = local.interval
+      path       = local.path
+      sourceRef  = local.repository
+      decryption = local.decryption
       # TODO: Health Checks
     }
   }
