@@ -36,3 +36,12 @@ variable "prune" {
   default     = true
   type        = bool
 }
+
+variable "decryption" {
+  description = "Provider and secret for manifest decryption"
+  default     = {}
+  type = object({
+    provider = optional(string)
+    secret   = optional(string)
+  })
+}

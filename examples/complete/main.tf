@@ -13,9 +13,9 @@ module "flux-install" {
   version = ">= 0.1.0"
 }
 
-# Set to true after flux-install. GitRepository CRD need to be created before the repo instances may be created.
+# Set to true after flux-install. GitRepository CRD must be created before the repo instances may be created.
 locals {
-  install_complete = true
+  install_complete = false
 }
 
 module "git-repository" {
