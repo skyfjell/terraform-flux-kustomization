@@ -1,4 +1,6 @@
-# This module is now located at <https://registry.terraform.io/modules/OmniTeqSource/kustomization/flux/latest>
+`sed -i '/^<!--- start terraform-docs --->/q' README.md && terraform-docs md . >> README.md`
+
+<!--- start terraform-docs --->
 
 ## Requirements
 
