@@ -1,28 +1,24 @@
 provider "kubernetes" {
   config_path    = "~/.kube/config"
   config_context = "k3d-tftest"
-
-  experiments {
-    manifest_resource = true
-  }
 }
 
 module "flux-install" {
   count   = 1
   source  = "OmniTeqSource/install/flux"
-  version = ">= 0.1.0"
+  version = "0.1.4"
 }
 
 # Set to true after flux-install. GitRepository CRD must be created before the repo instances may be created.
 locals {
-  install_complete = false
+  install_complete = true
 }
 
 module "git-repository" {
   count = local.install_complete ? 1 : 0
 
   source  = "OmniTeqSource/git-repository/flux"
-  version = "0.1.0"
+  version = "0.1.4"
 
   name = "kustomization-git"
   url  = "https://github.com/OmniTeqSource/examples.git"
