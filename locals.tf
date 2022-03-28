@@ -52,7 +52,8 @@ locals {
       prune      = local.prune
       interval   = local.interval
       path       = local.path
-      sourceRef  = local.repository
+      # merge() to strip OptionalAttributes things for k8s provider
+      sourceRef  = merge({}, local.repository)
       decryption = local.decryption
       # TODO: Health Checks
     }
