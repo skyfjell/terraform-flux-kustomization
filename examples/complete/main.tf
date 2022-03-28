@@ -6,7 +6,7 @@ provider "kubernetes" {
 module "flux-install" {
   count   = 1
   source  = "OmniTeqSource/install/flux"
-  version = "0.1.4"
+  version = "0.1.6"
 }
 
 # Set to true after flux-install. GitRepository CRD must be created before the repo instances may be created.
