@@ -3,22 +3,22 @@ provider "kubernetes" {
   config_context = "k3d-tftest"
 }
 
+provider "helm" {
+  kubernetes {
+    config_path    = "~/.kube/config"
+    config_context = "k3d-tftest"
+  }
+}
+
 module "flux-install" {
-  count   = 1
   source  = "OmniTeqSource/install/flux"
   version = "0.1.6"
 }
 
-# Set to true after flux-install. GitRepository CRD must be created before the repo instances may be created.
-locals {
-  install_complete = true
-}
-
 module "git-repository" {
-  count = local.install_complete ? 1 : 0
-
-  source  = "OmniTeqSource/git-repository/flux"
-  version = "0.1.4"
+  source = "../../../terraform-flux-git-repository"
+  # source  = "OmniTeqSource/git-repository/flux"
+  # version = "0.1.4"
 
   name = "kustomization-git"
   url  = "https://github.com/OmniTeqSource/examples.git"
@@ -28,8 +28,6 @@ module "git-repository" {
 }
 
 module "kustomization-git" {
-  count = local.install_complete ? 1 : 0
-
   source = "../../"
 
   name = "kustomization-git"
