@@ -12,13 +12,12 @@ provider "helm" {
 
 module "flux-install" {
   source  = "OmniTeqSource/install/flux"
-  version = "0.1.6"
+  version = "0.2.0"
 }
 
 module "git-repository" {
-  source = "../../../terraform-flux-git-repository"
-  # source  = "OmniTeqSource/git-repository/flux"
-  # version = "0.1.4"
+  source  = "OmniTeqSource/git-repository/flux"
+  version = "0.2.0"
 
   name = "kustomization-git"
   url  = "https://github.com/OmniTeqSource/examples.git"
