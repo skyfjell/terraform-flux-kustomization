@@ -25,7 +25,8 @@ locals {
     var.decryption,
     {
       provider = "sops"
-      secret   = "flux-sops-gpg"
+      # checkov:skip=CKV_SECRET_6:Not a git secret.
+      secret = "flux-sops-gpg"
     }
   )
 }
