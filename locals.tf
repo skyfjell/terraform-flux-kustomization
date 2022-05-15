@@ -25,7 +25,8 @@ locals {
     var.decryption,
     {
       provider = "sops"
-      secret   = "flux-sops-gpg"
+      # checkov:skip=CKV_SECRET_6:Not a git secret.
+      secret = "flux-sops-gpg"
     }
   )
 }
@@ -41,7 +42,7 @@ locals {
 
 locals {
   manifest = {
-    apiVersion = "kustomize.toolkit.fluxcd.io/v1beta1"
+    apiVersion = "kustomize.toolkit.fluxcd.io/v1beta2"
     kind       = "Kustomization"
     metadata = {
       name       = local.name
@@ -49,9 +50,9 @@ locals {
       finalizers = ["finalizers.fluxcd.io"]
     }
     spec = {
-      prune      = local.prune
-      interval   = local.interval
-      path       = local.path
+      prune    = local.prune
+      interval = local.interval
+      path     = local.path
       # merge() to strip OptionalAttributes things for k8s provider
       sourceRef  = merge({}, local.repository)
       decryption = local.decryption
