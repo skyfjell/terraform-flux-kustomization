@@ -19,7 +19,7 @@ module "git-repository" {
   source  = "OmniTeqSource/git-repository/flux"
   version = "0.2.0"
 
-  name = "kustomization-git"
+  name = "kustomization-git-repository"
   url  = "https://github.com/OmniTeqSource/examples.git"
 
   # This will prevent a condition where the namespace cannot be removed if a CR for a CRD still exists.
@@ -29,6 +29,6 @@ module "git-repository" {
 module "kustomization-git" {
   source = "../../"
 
-  name = "kustomization-git"
+  name = "kustomization"
   path = "manifests"
 }
