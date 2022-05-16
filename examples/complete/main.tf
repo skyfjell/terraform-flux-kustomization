@@ -17,7 +17,7 @@ module "flux-install" {
 
 module "git-repository" {
   source  = "OmniTeqSource/git-repository/flux"
-  version = "0.2.0"
+  version = "0.2.1"
 
   name = "kustomization-git-repository"
   url  = "https://github.com/OmniTeqSource/examples.git"
