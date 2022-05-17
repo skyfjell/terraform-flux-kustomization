@@ -37,7 +37,7 @@ No modules.
 | <a name="input_path"></a> [path](#input\_path) | Path within the repository containing manifests | `string` | n/a | yes |
 | <a name="input_prune"></a> [prune](#input\_prune) | Remove resources that are missing from the manifests | `bool` | `true` | no |
 | <a name="input_random_suffix"></a> [random\_suffix](#input\_random\_suffix) | Add a random alpha-numeric suffix to resource names(prevents helm release collision) | `bool` | `true` | no |
-| <a name="input_sourceRef"></a> [sourceRef](#input\_sourceRef) | Source reference object | <pre>object({<br>    name      = string<br>    namespace = optional(string)<br>    kind      = optional(string)<br>  })</pre> | n/a | yes |
+| <a name="input_source_ref"></a> [source\_ref](#input\_source\_ref) | Source reference object | <pre>object({<br>    name      = string<br>    namespace = optional(string)<br>    kind      = optional(string)<br>  })</pre> | n/a | yes |
 
 ## Outputs
 
