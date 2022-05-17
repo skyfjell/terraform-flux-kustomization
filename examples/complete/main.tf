@@ -32,7 +32,7 @@ module "kustomization_git" {
   name = "kustomization"
   path = "manifests"
 
-  sourceRef = {
+  source_ref = {
     name = module.git_repository.name
   }
 }
