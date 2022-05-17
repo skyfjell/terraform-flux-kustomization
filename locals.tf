@@ -1,15 +1,14 @@
 locals {
-  name      = var.name
+  name      = var.random_suffix ? join("-", [var.name, random_string.this.id]) : var.name
   namespace = var.namespace
   path      = var.path
   prune     = var.prune
 }
 
 locals {
-  repository = defaults(
-    var.repository,
+  sourceRef = defaults(
+    var.sourceRef,
     {
-      name      = local.name
       namespace = local.namespace
       kind      = "GitRepository"
     }
@@ -17,7 +16,7 @@ locals {
 }
 
 locals {
-  interval = var.interval == null ? local.repository.kind == "HelmRepository" ? "30m0s" : "5m0s" : var.interval
+  interval = var.interval
 }
 
 locals {
@@ -54,7 +53,7 @@ locals {
       interval = local.interval
       path     = local.path
       # merge() to strip OptionalAttributes things for k8s provider
-      sourceRef  = merge({}, local.repository)
+      sourceRef  = merge({}, local.sourceRef)
       decryption = local.decryption
       # TODO: Health Checks
     }
