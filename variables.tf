@@ -12,18 +12,8 @@ variable "namespace" {
 
 variable "interval" {
   description = "Interval to check the repo for reconciliation"
-  default     = null
+  default     = "5m0s"
   type        = string
-}
-
-variable "repository" {
-  description = "Repository resource reference(GitRepository/HelmRepository)"
-  default     = {}
-  type = object({
-    name      = optional(string)
-    namespace = optional(string)
-    kind      = optional(string)
-  })
 }
 
 variable "path" {
@@ -43,5 +33,20 @@ variable "decryption" {
   type = object({
     provider = optional(string)
     secret   = optional(string)
+  })
+}
+
+variable "random_suffix" {
+  description = "Add a random alpha-numeric suffix to resource names(prevents helm release collision)"
+  default     = true
+  type        = bool
+}
+
+variable "sourceRef" {
+  description = "Source reference object"
+  type = object({
+    name      = string
+    namespace = optional(string)
+    kind      = optional(string)
   })
 }
