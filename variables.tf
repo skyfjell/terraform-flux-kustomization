@@ -42,7 +42,7 @@ variable "random_suffix" {
   type        = bool
 }
 
-variable "sourceRef" {
+variable "source_ref" {
   description = "Source reference object"
   type = object({
     name      = string
