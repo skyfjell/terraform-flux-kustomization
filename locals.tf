@@ -6,8 +6,8 @@ locals {
 }
 
 locals {
-  sourceRef = defaults(
-    var.sourceRef,
+  source_ref = defaults(
+    var.source_ref,
     {
       namespace = local.namespace
       kind      = "GitRepository"
@@ -53,7 +53,7 @@ locals {
       interval = local.interval
       path     = local.path
       # merge() to strip OptionalAttributes things for k8s provider
-      sourceRef  = merge({}, local.sourceRef)
+      sourceRef  = merge({}, local.source_ref)
       decryption = local.decryption
       # TODO: Health Checks
     }
