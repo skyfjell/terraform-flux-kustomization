@@ -11,16 +11,16 @@ provider "helm" {
 }
 
 module "flux_install" {
-  source  = "OmniTeqSource/install/flux"
-  version = "0.2.0"
+  source  = "skyfjell/install/flux"
+  version = "1.0.1"
 }
 
 module "git_repository" {
-  source  = "OmniTeqSource/git-repository/flux"
-  version = "0.2.2"
+  source  = "skyfjell/git-repository/flux"
+  version = "1.0.1"
 
   name = "kustomization"
-  url  = "https://github.com/OmniTeqSource/examples.git"
+  url  = "https://github.com/skyfjell/examples.git"
 
   # This will prevent a condition where the namespace cannot be removed if a CR for a CRD still exists.
   depends_on = [module.flux_install]
