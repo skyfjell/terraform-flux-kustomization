@@ -31,8 +31,8 @@ variable "decryption" {
   description = "Provider and secret for manifest decryption"
   default     = {}
   type = object({
-    provider = optional(string)
-    secret   = optional(string)
+    provider = optional(string, "sops")
+    secret   = optional(string, "flux-sops-gpg")
   })
 }
 
@@ -46,7 +46,7 @@ variable "source_ref" {
   description = "Source reference object"
   type = object({
     name      = string
-    namespace = optional(string)
-    kind      = optional(string)
+    namespace = optional(string, "flux-system")
+    kind      = optional(string, "GitRepository")
   })
 }

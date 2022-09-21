@@ -3,43 +3,20 @@ locals {
   namespace = var.namespace
   path      = var.path
   prune     = var.prune
-}
 
-locals {
-  source_ref = defaults(
-    var.source_ref,
-    {
-      namespace = local.namespace
-      kind      = "GitRepository"
-    }
-  )
-}
+  source_ref = var.source_ref
 
-locals {
   interval = var.interval
-}
 
-locals {
-  decryptionTmp = defaults(
-    var.decryption,
-    {
-      provider = "sops"
-      # checkov:skip=CKV_SECRET_6:Not a git secret.
-      secret = "flux-sops-gpg"
-    }
-  )
-}
+  decryptionTmp = var.decryption
 
-locals {
   decryption = {
     provider = local.decryptionTmp.provider
     secretRef = {
       name = local.decryptionTmp.secret
     }
   }
-}
 
-locals {
   manifest = {
     apiVersion = "kustomize.toolkit.fluxcd.io/v1beta2"
     kind       = "Kustomization"

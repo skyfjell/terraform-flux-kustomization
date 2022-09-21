@@ -12,12 +12,12 @@ provider "helm" {
 
 module "flux_install" {
   source  = "skyfjell/install/flux"
-  version = "1.0.1"
+  version = "1.0.4"
 }
 
 module "git_repository" {
   source  = "skyfjell/git-repository/flux"
-  version = "1.0.1"
+  version = "1.0.2"
 
   name = "kustomization"
   url  = "https://github.com/skyfjell/examples.git"
