@@ -43,4 +43,5 @@ variable "source_ref" {
     namespace = optional(string, "flux-system")
     kind      = optional(string, "GitRepository")
   })
+  default = {}
 }

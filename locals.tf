@@ -6,7 +6,11 @@ locals {
 
   source_ref = merge(
     var.source_ref,
-    { name = join("-", [lower(replace(var.source_ref.kind, "/(.)([A-Z]+)/", "$1-$2")), var.name]) },
+    {
+      name = var.source_ref.name == null ? (
+        join("-", [lower(replace(var.source_ref.kind, "/(.)([A-Z]+)/", "$1-$2")), var.name])
+      ) : var.source_ref.name
+    },
   )
 
   interval = var.interval

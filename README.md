@@ -35,7 +35,7 @@ No modules.
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | Namespace the release belongs to(not deployed to) | `string` | `"flux-system"` | no |
 | <a name="input_path"></a> [path](#input\_path) | Path within the repository containing manifests | `string` | n/a | yes |
 | <a name="input_prune"></a> [prune](#input\_prune) | Remove resources that are missing from the manifests | `bool` | `true` | no |
-| <a name="input_source_ref"></a> [source\_ref](#input\_source\_ref) | Source reference object | <pre>object({<br>    name      = optional(string)<br>    namespace = optional(string, "flux-system")<br>    kind      = optional(string, "GitRepository")<br>  })</pre> | n/a | yes |
+| <a name="input_source_ref"></a> [source\_ref](#input\_source\_ref) | Source reference object | <pre>object({<br>    name      = optional(string)<br>    namespace = optional(string, "flux-system")<br>    kind      = optional(string, "GitRepository")<br>  })</pre> | `{}` | no |
 
 ## Outputs
 
