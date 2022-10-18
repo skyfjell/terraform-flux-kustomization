@@ -36,16 +36,10 @@ variable "decryption" {
   })
 }
 
-variable "random_suffix" {
-  description = "Add a random alpha-numeric suffix to resource names(prevents helm release collision)"
-  default     = true
-  type        = bool
-}
-
 variable "source_ref" {
   description = "Source reference object"
   type = object({
-    name      = string
+    name      = optional(string)
     namespace = optional(string, "flux-system")
     kind      = optional(string, "GitRepository")
   })
