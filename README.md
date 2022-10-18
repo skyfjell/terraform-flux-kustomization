@@ -8,14 +8,12 @@
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.0, < 2.0.0 |
 | <a name="requirement_helm"></a> [helm](#requirement\_helm) | >= 2.5.1, < 3.0.0 |
 | <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | >= 2.4.1, < 3.0.0 |
-| <a name="requirement_random"></a> [random](#requirement\_random) | >= 3.1.3, < 4.0.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
 | <a name="provider_helm"></a> [helm](#provider\_helm) | >= 2.5.1, < 3.0.0 |
-| <a name="provider_random"></a> [random](#provider\_random) | >= 3.1.3, < 4.0.0 |
 
 ## Modules
 
@@ -26,7 +24,6 @@ No modules.
 | Name | Type |
 |------|------|
 | [helm_release.this](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
-| [random_string.this](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string) | resource |
 
 ## Inputs
 
@@ -38,8 +35,7 @@ No modules.
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | Namespace the release belongs to(not deployed to) | `string` | `"flux-system"` | no |
 | <a name="input_path"></a> [path](#input\_path) | Path within the repository containing manifests | `string` | n/a | yes |
 | <a name="input_prune"></a> [prune](#input\_prune) | Remove resources that are missing from the manifests | `bool` | `true` | no |
-| <a name="input_random_suffix"></a> [random\_suffix](#input\_random\_suffix) | Add a random alpha-numeric suffix to resource names(prevents helm release collision) | `bool` | `true` | no |
-| <a name="input_source_ref"></a> [source\_ref](#input\_source\_ref) | Source reference object | <pre>object({<br>    name      = string<br>    namespace = optional(string, "flux-system")<br>    kind      = optional(string, "GitRepository")<br>  })</pre> | n/a | yes |
+| <a name="input_source_ref"></a> [source\_ref](#input\_source\_ref) | Source reference object | <pre>object({<br>    name      = optional(string)<br>    namespace = optional(string, "flux-system")<br>    kind      = optional(string, "GitRepository")<br>  })</pre> | n/a | yes |
 
 ## Outputs
 

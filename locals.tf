@@ -1,10 +1,13 @@
 locals {
-  name      = var.random_suffix ? join("-", [var.name, random_string.this.id]) : var.name
+  name      = var.name
   namespace = var.namespace
   path      = var.path
   prune     = var.prune
 
-  source_ref = var.source_ref
+  source_ref = merge(
+    var.source_ref,
+    { name = join("-", [lower(replace(var.source_ref.kind, "/(.)([A-Z]+)/", "$1-$2")), var.name]) },
+  )
 
   interval = var.interval
 
@@ -26,11 +29,10 @@ locals {
       finalizers = ["finalizers.fluxcd.io"]
     }
     spec = {
-      prune    = local.prune
-      interval = local.interval
-      path     = local.path
-      # merge() to strip OptionalAttributes things for k8s provider
-      sourceRef  = merge({}, local.source_ref)
+      prune      = local.prune
+      interval   = local.interval
+      path       = local.path
+      sourceRef  = local.source_ref
       decryption = local.decryption
       # TODO: Health Checks
     }

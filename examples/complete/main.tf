@@ -17,7 +17,7 @@ module "flux_install" {
 
 module "git_repository" {
   source  = "skyfjell/git-repository/flux"
-  version = "1.0.2"
+  version = "1.0.3"
 
   name = "kustomization"
   url  = "https://github.com/skyfjell/examples.git"
@@ -33,6 +33,7 @@ module "kustomization_git" {
   path = "manifests"
 
   source_ref = {
-    name = module.git_repository.name
+    # If name differs from repository name:
+    # name = module.git_repository.name
   }
 }
