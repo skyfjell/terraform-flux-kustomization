@@ -32,8 +32,8 @@ module "kustomization_git" {
   name = "kustomization"
   path = "manifests"
 
-  source_ref = {
-    # If name differs from repository name:
-    # name = module.git_repository.name
-  }
+  # source_ref = {
+  #   # If name differs from repository name:
+  #   name = module.git_repository.name
+  # }
 }
